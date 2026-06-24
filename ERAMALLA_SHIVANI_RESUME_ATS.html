@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERAMALLA SHIVANI - Resume</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --text-color: #333333;
+            --light-text: #666666;
+            --accent-color: #d4af37;
+            --border-color: #e2e8f0;
+            --font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            color: var(--text-color);
+            line-height: 1.5;
+            background-color: #f7fafc;
+            padding: 40px 20px;
+        }
+
+        .resume-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-top: 6px solid var(--primary-color);
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: var(--light-text);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            font-size: 14px;
+            color: var(--light-text);
+        }
+
+        .contact-info span {
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info a {
+            color: var(--light-text);
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        /* Section Layout */
+        section {
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            font-size: 16px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .summary-text {
+            font-size: 14px;
+            text-align: justify;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            font-size: 13.5px;
+        }
+
+        .skill-category h3 {
+            font-size: 14px;
+            color: #2d3748;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .skill-category p {
+            color: var(--light-text);
+        }
+
+        /* Experience Timeline */
+        .job {
+            margin-bottom: 20px;
+        }
+
+        .job:last-child {
+            margin-bottom: 0;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 6px;
+        }
+
+        .job-title {
+            font-size: 14.5px;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .company-loc {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .job-dates {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--light-text);
+            white-space: nowrap;
+        }
+
+        .job-bullets {
+            list-style-type: square;
+            margin-left: 20px;
+            font-size: 13.5px;
+        }
+
+        .job-bullets li {
+            margin-bottom: 4px;
+            text-align: justify;
+        }
+
+        /* Education */
+        .education-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .education-degree {
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .education-school {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .education-score {
+            font-weight: 600;
+            color: var(--light-text);
+        }
+
+        /* Projects */
+        .projects-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            font-size: 13.5px;
+        }
+
+        .project-item h3 {
+            font-size: 14px;
+            color: #2d3748;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .project-item p {
+            color: var(--light-text);
+        }
+
+        /* Interactive Controls */
+        .controls {
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #1a252f;
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            body {
+                background-color: #ffffff;
+                padding: 0;
+                color: #000000;
+                font-size: 13px;
+            }
+
+            .resume-container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+                border-top: none;
+            }
+
+            .controls {
+                display: none;
+            }
+
+            /* Allow sections to break across pages naturally */
+            section {
+                margin-bottom: 18px;
+                page-break-inside: auto;
+            }
+
+            h2 {
+                margin-bottom: 8px;
+                font-size: 14px;
+            }
+
+            /* Prevent individual items from breaking mid-text */
+            .job {
+                page-break-inside: avoid;
+                margin-bottom: 14px;
+            }
+
+            .job-bullets {
+                font-size: 13px;
+            }
+
+            .education-item {
+                page-break-inside: avoid;
+                margin-bottom: 6px;
+            }
+
+            .project-item {
+                page-break-inside: avoid;
+            }
+
+            /* Set strict margins to fit exactly 2 pages */
+            @page {
+                size: letter;
+                margin: 0.4in 0.5in 0.4in 0.5in;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <button class="btn" onclick="window.print()">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+            </svg>
+            Print Resume / Save as PDF
+        </button>
+    </div>
+
+    <div class="resume-container">
+        <header>
+            <h1>Eramalla Shivani</h1>
+            <div class="subtitle">Assistant Design Manager &bull; Senior Interior Designer</div>
+            <div class="contact-info">
+                <span>📍 Madhapur, Hyderabad, 500081</span>
+                <span>📞 <a href="tel:+918790655169">+91 8790655169</a></span>
+                <span>✉️ <a href="mailto:shivani.sanvy@gmail.com">shivani.sanvy@gmail.com</a></span>
+                <span>🌐 <a href="#" id="web-link">Portfolio Website</a></span>
+            </div>
+        </header>
+
+        <section id="summary">
+            <h2>Professional Summary</h2>
+            <p class="summary-text">
+                Highly creative and detail-oriented Assistant Design Manager and Interior Designer with over 5 years of professional experience in end-to-end design execution. Proven expertise in spatial planning, materials selection, detailed 2D drafting, and photorealistic 3D visualization. Demonstrates a strong track record of managing residential, commercial, and hospitality projects from concept to final handover. Adept at coordinating with cross-functional teams, managing client relationships, and delivering aesthetically premium and functional spaces that exceed expectations.
+            </p>
+        </section>
+
+        <section id="skills">
+            <h2>Core Skills & Technical Toolkit</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Design & Planning</h3>
+                    <p>Spatial Planning, Interior Architecture, Mood Boarding, Material Selection, False Ceiling & Flooring</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Technical Drafting</h3>
+                    <p>AutoCAD, 2D Construction Drawings, Electrical & Plumbing Layouts, Detail Joinery Drafting</p>
+                </div>
+                <div class="skill-category">
+                    <h3>3D Visualization</h3>
+                    <p>SketchUp Modeling, Enscape & V-Ray Rendering, Photorealistic Styling, Walkthrough Animations, Photoshop</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>Professional Experience</h2>
+            
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <span class="job-title">Assistant Design Manager (Interior Design)</span> &bull; 
+                        <span class="company-loc">Incor Groups (Real Estate Company)</span>
+                    </div>
+                    <div class="job-dates">2024 – Present</div>
+                </div>
+                <ul class="job-bullets">
+                    <li>Spearheaded end-to-end design development and site execution for high-profile commercial, hospitality, and residential real estate projects.</li>
+                    <li>Developed comprehensive spatial layouts, concept boards, and construction drawings (GF, false ceiling, flooring, electrical, and plumbing) using AutoCAD.</li>
+                    <li>Collaborated closely with project managers, structural engineers, and contractors to resolve design conflicts on-site and maintain project schedules.</li>
+                    <li>Curated premium material palettes, finishes, furniture, and lighting plans aligned with brand aesthetics and project budgets.</li>
+                    <li>Conducted regular client consultations to refine design schemes, resulting in high satisfaction rates and on-time project handovers.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <span class="job-title">Interior Designer</span> &bull; 
+                        <span class="company-loc">Studio Elements</span>
+                    </div>
+                    <div class="job-dates">2022 – 2024</div>
+                </div>
+                <ul class="job-bullets">
+                    <li>Managed end-to-end interior design projects for luxury residential villas, premium apartments, and retail commercial spaces.</li>
+                    <li>Generated photorealistic 3D renderings and immersive spatial walkthroughs using SketchUp, Enscape, and V-Ray to facilitate client approvals.</li>
+                    <li>Designed highly customized millwork, modular kitchens, custom wardrobes, and detailed partition drawings for factory-level fabrication.</li>
+                    <li>Supervised site execution, ensuring quality control, dimensional accuracy, and strict adherence to architectural details and safety standards.</li>
+                    <li>Sourced and coordinated with specialized vendors for stone, wood, metalwork, and upholstery.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <span class="job-title">Interior Designer</span> &bull; 
+                        <span class="company-loc">Elevate X</span>
+                    </div>
+                    <div class="job-dates">2020 – 2022</div>
+                </div>
+                <ul class="job-bullets">
+                    <li>Led comprehensive residential interior designs from initial client onboarding to handover for premium apartments (2BHK, 3BHK, and Duplex houses).</li>
+                    <li>Formulated concepts, mood boards, and furniture selection guides based on clients' functional needs and lifestyle requirements.</li>
+                    <li>Drafted precise working drawings including electrical layouts, lighting plans, tile layings, and wall claddings.</li>
+                    <li>Liaised with site supervisors and carpenters to ensure design details were executed accurately.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <div class="education-item">
+                <div>
+                    <span class="education-degree">Bachelor of Design (B.Des) in Interior Design</span> &bull; 
+                    <span class="education-school">JNAFAU, Hyderabad</span>
+                </div>
+                <div class="education-score">Score: 61% | 2016 – 2020</div>
+            </div>
+            <div class="education-item">
+                <div>
+                    <span class="education-degree">Intermediate (Higher Secondary)</span> &bull; 
+                    <span class="education-school">Narayana Junior College</span>
+                </div>
+                <div class="education-score">Score: 77% | 2013 – 2015</div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Key Design Projects Showcase</h2>
+            <div class="projects-list">
+                <div class="project-item">
+                    <h3>Luxury 3BHK Residential House</h3>
+                    <p>Space planning, spatial design, and premium material board execution focusing on modern urban living.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Specialty Turkish Restaurant</h3>
+                    <p>Researched historical details and cultural habits to design an authentic commercial hospitality layout.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Acoustical Music School</h3>
+                    <p>Integrated acoustic panels and spatial acoustics calculations to design state-of-the-art practice rooms.</p>
+                </div>
+                <div class="project-item">
+                    <h3>False Ceiling & Flooring Practice</h3>
+                    <p>Hands-on installation and design layout details for residential and duplex project flooring.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Auto-update portfolio link to current URL if served locally
+        document.getElementById('web-link').href = window.location.origin;
+    </script>
+</body>
+</html>
