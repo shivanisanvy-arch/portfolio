@@ -292,11 +292,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================
-    // 5. Interactive Blueprint Floor Plan
+    // 5. Interactive Blueprint Floor Plan (Technical CAD Engine)
     // ==========================================
+    const blueprintSvg = document.getElementById('interactive-blueprint');
+    const crosshairX = document.getElementById('cursor-crosshair-x');
+    const crosshairY = document.getElementById('cursor-crosshair-y');
+    const coordsDisplay = document.getElementById('blueprint-coords');
+    
     const blueprintRooms = document.querySelectorAll('.blueprint-room');
     const roomNameDisplay = document.getElementById('blueprint-room-name');
     const roomDetailsDisplay = document.getElementById('blueprint-room-details');
+    const hotspots = document.querySelectorAll('.hotspot-group');
     
     const roomSpecs = {
         living: {
@@ -316,7 +322,27 @@ document.addEventListener('DOMContentLoaded', () => {
             details: "Dimensions: 17'-0\" x 5'-0\" | Area: 85 sq ft. Specs: Floating marble vanity, custom ceiling spotlights, glass shower partition."
         }
     };
+
+    const hotspotSpecs = {
+        partition: {
+            name: "CAD Detail: CNC Wood Screen",
+            details: "Material: Teakwood partition. Visually separates the entry vestibule from the living area while maintaining natural light flow."
+        },
+        island: {
+            name: "Detail: Kitchen Island Waterfall",
+            details: "Material: Calacatta gold stone. Features an integrated double sink and pop-up pneumatic power socket terminals."
+        },
+        headboard: {
+            name: "Detail: Acoustic Walnut Fluting",
+            details: "Material: Acoustic walnut slats. Houses indirect 3000K warm white LED lighting channels to eliminate reading glare."
+        },
+        sofa: {
+            name: "Layout Detail: Floating L-Sofa",
+            details: "Design: Customized modular low-height sectional. Designed to keep visual lines open to the dining window."
+        }
+    };
     
+    // Room Hovers
     blueprintRooms.forEach(room => {
         room.addEventListener('mouseenter', () => {
             const roomKey = room.getAttribute('data-room');
@@ -325,22 +351,96 @@ document.addEventListener('DOMContentLoaded', () => {
                 roomNameDisplay.textContent = spec.name;
                 roomNameDisplay.style.color = "var(--accent-color)";
                 roomDetailsDisplay.textContent = spec.details;
-                
-                // Highlight corresponding SVG area
-                room.setAttribute('fill', 'rgba(212, 175, 55, 0.12)');
-                room.setAttribute('stroke', 'var(--accent-color)');
-                room.setAttribute('stroke-width', '1.5');
             }
         });
         
         room.addEventListener('mouseleave', () => {
-            roomNameDisplay.textContent = "Interactive CAD Plan";
-            roomNameDisplay.style.color = "var(--text-color)";
-            roomDetailsDisplay.textContent = "Hover over rooms to inspect spatial specifications.";
-            
-            room.setAttribute('fill', 'rgba(212, 175, 55, 0)');
-            room.setAttribute('stroke', 'none');
+            resetInfoCard();
         });
+    });
+
+    // Hotspot Hovers
+    hotspots.forEach(hotspot => {
+        hotspot.addEventListener('mouseenter', () => {
+            const spotKey = hotspot.getAttribute('data-hotspot');
+            const spec = hotspotSpecs[spotKey];
+            if (spec) {
+                roomNameDisplay.textContent = spec.name;
+                roomNameDisplay.style.color = "var(--accent-color)";
+                roomDetailsDisplay.textContent = spec.details;
+            }
+        });
+        
+        hotspot.addEventListener('mouseleave', () => {
+            resetInfoCard();
+        });
+    });
+
+    const resetInfoCard = () => {
+        roomNameDisplay.textContent = "Interactive CAD Plan";
+        roomNameDisplay.style.color = "var(--text-color)";
+        roomDetailsDisplay.textContent = "Hover over rooms or pulsing hotspots to inspect spatial specifications.";
+    };
+
+    // Live AutoCAD Crosshair Mouse Tracker
+    blueprintSvg.addEventListener('mousemove', (e) => {
+        const rect = blueprintSvg.getBoundingClientRect();
+        
+        // Calculate relative coordinates in SVG viewBox units (500 x 375)
+        const svgX = ((e.clientX - rect.left) / rect.width) * 500;
+        const svgY = ((e.clientY - rect.top) / rect.height) * 375;
+        
+        // Constraints
+        if (svgX >= 5 && svgX <= 495 && svgY >= 5 && svgY <= 370) {
+            crosshairX.style.display = 'block';
+            crosshairY.style.display = 'block';
+            
+            crosshairX.setAttribute('y1', svgY);
+            crosshairX.setAttribute('y2', svgY);
+            
+            crosshairY.setAttribute('x1', svgX);
+            crosshairY.setAttribute('x2', svgX);
+            
+            // Map coordinate to technical dimensions (45ft width scale, 33.75ft height scale)
+            const xFeet = Math.floor((svgX / 500) * 45);
+            const xInches = Math.floor((((svgX / 500) * 45) % 1) * 12);
+            const yFeet = Math.floor((svgY / 375) * 33.75);
+            const yInches = Math.floor((((svgY / 375) * 33.75) % 1) * 12);
+            
+            coordsDisplay.textContent = `X: ${xFeet}'-${xInches}" | Y: ${yFeet}'-${yInches}"`;
+        } else {
+            hideCrosshairs();
+        }
+    });
+
+    blueprintSvg.addEventListener('mouseleave', () => {
+        hideCrosshairs();
+    });
+
+    const hideCrosshairs = () => {
+        crosshairX.style.display = 'none';
+        crosshairY.style.display = 'none';
+        coordsDisplay.textContent = 'X: 0.00 | Y: 0.00';
+    };
+
+    // ==========================================
+    // 6. Scroll Reveal Observer
+    // ==========================================
+    const revealSections = document.querySelectorAll('.reveal');
+    
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target); // Trigger only once
+            }
+        });
+    }, {
+        threshold: 0.15 // Trigger when 15% visible
+    });
+    
+    revealSections.forEach(section => {
+        revealObserver.observe(section);
     });
 
 });

@@ -98,9 +98,43 @@
                         </div>
                     </div>
                 </div>
+        <!-- Hero Section -->
+        <section class="hero-section" id="home">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <span class="hero-subtitle">Assistant Design Manager &bull; Spatial Planner</span>
+                    <h1 class="hero-title">Crafting Premium <br><span class="accent-text">Interior Architectures</span></h1>
+                    <p class="hero-description">
+                        Hi, I'm Eramalla Shivani. I blend artistic aesthetics with drafting precision to design residential, commercial, and hospitality spaces that feel alive, functional, and tailored.
+                    </p>
+                    <div class="hero-cta-group">
+                        <a href="#projects" class="primary-btn">View My Work</a>
+                        <a href="ERAMALLA_SHIVANI_RESUME_ATS.html" class="secondary-btn" target="_blank">Download Resume</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-num">5+</span>
+                            <span class="stat-label">Years of Experience</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num">20+</span>
+                            <span class="stat-label">Luxury Projects</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num">100%</span>
+                            <span class="stat-label">Client Satisfaction</span>
+                        </div>
+                    </div>
+                </div>
                 <!-- Premium Interactive 2D Blueprint Floor Plan -->
                 <div class="hero-visual" id="hero-visual-card">
                     <div class="blueprint-frame">
+                        <!-- Technical CAD Corner Markers -->
+                        <div class="cad-corner tl">+</div>
+                        <div class="cad-corner tr">+</div>
+                        <div class="cad-corner bl">+</div>
+                        <div class="cad-corner br">+</div>
+                        
                         <!-- Technical Grid Pattern Background -->
                         <svg class="blueprint-svg" viewBox="0 0 500 375" id="interactive-blueprint">
                             <defs>
@@ -115,6 +149,10 @@
                             <!-- Blueprint Outer border -->
                             <rect x="5" y="5" width="490" height="365" fill="none" class="blueprint-border" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
                             
+                            <!-- Live Cursor Crosshairs (AutoCAD Style) -->
+                            <line id="cursor-crosshair-x" x1="5" y1="0" x2="495" y2="0" stroke="rgba(212, 175, 55, 0.25)" stroke-width="0.5" stroke-dasharray="2,2" style="display:none;" />
+                            <line id="cursor-crosshair-y" x1="0" y1="5" x2="0" y2="370" stroke="rgba(212, 175, 55, 0.25)" stroke-width="0.5" stroke-dasharray="2,2" style="display:none;" />
+
                             <!-- Interactive Room Zones (Semi-transparent fills on hover) -->
                             <!-- Room 1: Living & Dining (Left side) -->
                             <path d="M 25 25 L 260 25 L 260 350 L 25 350 Z" class="blueprint-room" data-room="living" fill="rgba(212,175,55,0)" stroke="none" />
@@ -163,10 +201,35 @@
                             <!-- Dimension markings -->
                             <line x1="25" y1="365" x2="475" y2="365" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
                             <text x="250" y="372" class="blueprint-dim" text-anchor="middle">45'-0"</text>
+
+                            <!-- Interactive Design Hotspots (Pulsing tech dots) -->
+                            <g class="hotspot-group" data-hotspot="partition">
+                                <circle cx="260" cy="110" r="10" class="hotspot-pulse" />
+                                <circle cx="260" cy="110" r="4" class="hotspot-core" />
+                            </g>
+                            <g class="hotspot-group" data-hotspot="island">
+                                <circle cx="330" cy="120" r="10" class="hotspot-pulse" />
+                                <circle cx="330" cy="120" r="4" class="hotspot-core" />
+                            </g>
+                            <g class="hotspot-group" data-hotspot="headboard">
+                                <circle cx="380" cy="260" r="10" class="hotspot-pulse" />
+                                <circle cx="380" cy="260" r="4" class="hotspot-core" />
+                            </g>
+                            <g class="hotspot-group" data-hotspot="sofa">
+                                <circle cx="70" y="140" cy="140" r="10" class="hotspot-pulse" />
+                                <circle cx="70" y="140" cy="140" r="4" class="hotspot-core" />
+                            </g>
+
+                            <!-- Live coordinates text -->
+                            <text id="blueprint-coords" x="470" y="20" class="blueprint-coords-text" text-anchor="end">X: 0.00 | Y: 0.00</text>
                         </svg>
                         
                         <!-- Floating Glass Info Panel -->
                         <div class="blueprint-info-overlay">
+                            <div class="blueprint-status">
+                                <span class="status-dot"></span>
+                                <span class="status-text">CAD ENGINE ACTIVE</span>
+                            </div>
                             <div class="blueprint-room-name" id="blueprint-room-name">Interactive CAD Plan</div>
                             <div class="blueprint-room-details" id="blueprint-room-details">Hover over rooms to inspect spatial specifications.</div>
                         </div>
@@ -177,7 +240,7 @@
         </section>
 
         <!-- About & Experience Section -->
-        <section class="about-section" id="about">
+        <section class="about-section reveal" id="about">
             <div class="section-container">
                 <div class="section-header">
                     <span class="section-subtitle">Aesthetic Vision</span>
@@ -272,7 +335,7 @@
         </section>
 
         <!-- Selected Projects Section -->
-        <section class="projects-section" id="projects">
+        <section class="projects-section reveal" id="projects">
             <div class="section-container">
                 <div class="section-header">
                     <span class="section-subtitle">Visual Works</span>
@@ -285,6 +348,7 @@
                     <!-- Project 1 Card -->
                     <article class="project-card" data-project-id="p1">
                         <div class="card-image-wrapper">
+                            <span class="editorial-num">01</span>
                             <img src="images/page_8_img_2.jpg" alt="Studio Apartment Urban Modern Layout" class="card-image">
                             <div class="card-overlay">
                                 <span class="view-gallery-text">View Full 3D Gallery →</span>
@@ -302,6 +366,7 @@
                     <!-- Project 2 Card -->
                     <article class="project-card" data-project-id="p2">
                         <div class="card-image-wrapper">
+                            <span class="editorial-num">02</span>
                             <img src="images/page_13_img_2.jpg" alt="Luxury Villa Design Layout" class="card-image">
                             <div class="card-overlay">
                                 <span class="view-gallery-text">View Full 3D Gallery →</span>
@@ -319,6 +384,7 @@
                     <!-- Project 3 Card -->
                     <article class="project-card" data-project-id="p3">
                         <div class="card-image-wrapper">
+                            <span class="editorial-num">03</span>
                             <img src="images/page_19_img_2.jpg" alt="Villa LLD Layout" class="card-image">
                             <div class="card-overlay">
                                 <span class="view-gallery-text">View Full 3D Gallery →</span>
@@ -336,6 +402,7 @@
                     <!-- Project 4 Card -->
                     <article class="project-card" data-project-id="p4">
                         <div class="card-image-wrapper">
+                            <span class="editorial-num">04</span>
                             <img src="images/page_23_img_2.jpg" alt="Double Height Dining Area Layout" class="card-image">
                             <div class="card-overlay">
                                 <span class="view-gallery-text">View Full 3D Gallery →</span>
@@ -355,7 +422,7 @@
         </section>
 
         <!-- Contact Section -->
-        <section class="contact-section" id="contact">
+        <section class="contact-section reveal" id="contact">
             <div class="section-container">
                 <div class="section-header">
                     <span class="section-subtitle">Let's Connect</span>

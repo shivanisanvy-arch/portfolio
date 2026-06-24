@@ -461,10 +461,26 @@ a {
     border-color: var(--accent-color);
 }
 
+/* CAD Corner Plus Signs */
+.cad-corner {
+    position: absolute;
+    font-family: monospace;
+    font-size: 14px;
+    color: var(--accent-color);
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 10;
+}
+.cad-corner.tl { top: 12px; left: 12px; }
+.cad-corner.tr { top: 12px; right: 12px; }
+.cad-corner.bl { bottom: 12px; left: 12px; }
+.cad-corner.br { bottom: 12px; right: 12px; }
+
 .blueprint-svg {
     width: 100%;
     height: auto;
     display: block;
+    cursor: crosshair;
 }
 
 .blueprint-room {
@@ -494,11 +510,77 @@ a {
     pointer-events: none;
 }
 
+.blueprint-coords-text {
+    font-family: monospace;
+    font-size: 9.5px;
+    fill: var(--accent-color);
+    opacity: 0.65;
+    pointer-events: none;
+}
+
+/* Pulsing Hotspots */
+.hotspot-group {
+    cursor: pointer;
+}
+
+.hotspot-pulse {
+    fill: var(--accent-color);
+    opacity: 0.25;
+    animation: hotspot-pulse 2s infinite ease-in-out;
+    transform-origin: center;
+}
+
+.hotspot-core {
+    fill: var(--accent-color);
+    transition: var(--transition);
+}
+
+.hotspot-group:hover .hotspot-core {
+    fill: #ffffff;
+    transform: scale(1.3);
+}
+
+@keyframes hotspot-pulse {
+    0% { transform: scale(0.6) translate(0,0); opacity: 0.4; }
+    100% { transform: scale(1.6) translate(-5.5px,-5.5px); opacity: 0; }
+}
+
 .blueprint-info-overlay {
     margin-top: 20px;
     padding-top: 15px;
     border-top: 1px solid var(--border-color);
     width: 100%;
+}
+
+/* Pulse status dot */
+.blueprint-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #2ecc71;
+    display: inline-block;
+    box-shadow: 0 0 6px #2ecc71;
+    animation: status-pulse 1.5s infinite;
+}
+
+.status-text {
+    font-family: monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: #2ecc71;
+}
+
+@keyframes status-pulse {
+    0% { transform: scale(0.8); opacity: 0.8; }
+    100% { transform: scale(1.6); opacity: 0; }
 }
 
 .blueprint-room-name {
@@ -514,6 +596,40 @@ a {
     font-size: 13px;
     color: var(--text-muted);
     line-height: 1.5;
+}
+
+/* Editorial Project Card Numbers */
+.editorial-num {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-family: var(--font-heading);
+    font-size: 72px;
+    font-weight: 700;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.12);
+    pointer-events: none;
+    z-index: 5;
+    transition: var(--transition);
+}
+
+.project-card:hover .editorial-num {
+    color: rgba(212, 175, 55, 0.08);
+    -webkit-text-stroke: 1.5px var(--accent-color);
+    transform: translateY(-5px);
+}
+
+/* Scroll reveal class animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Light Theme Blueprint Overrides */
@@ -536,6 +652,10 @@ a {
 
 .light-theme .furniture-line {
     stroke: rgba(0, 0, 0, 0.08) !important;
+}
+
+.light-theme .editorial-num {
+    -webkit-text-stroke: 1.5px rgba(44, 62, 80, 0.12);
 }
 
 .hero-content {
