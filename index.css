@@ -443,6 +443,101 @@ a {
     display: block;
 }
 
+/* Blueprint Styles */
+.blueprint-frame {
+    position: relative;
+    background-color: rgba(18, 22, 28, 0.45);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.blueprint-frame:hover {
+    border-color: var(--accent-color);
+}
+
+.blueprint-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.blueprint-room {
+    transition: fill 0.3s ease, stroke 0.3s ease;
+    cursor: pointer;
+}
+
+.blueprint-room:hover {
+    fill: rgba(212, 175, 55, 0.12);
+}
+
+.blueprint-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    fill: var(--text-color);
+    pointer-events: none;
+    opacity: 0.85;
+}
+
+.blueprint-dim {
+    font-family: var(--font-body);
+    font-size: 9px;
+    font-weight: 600;
+    fill: var(--text-muted);
+    pointer-events: none;
+}
+
+.blueprint-info-overlay {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+    width: 100%;
+}
+
+.blueprint-room-name {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 4px;
+    transition: color 0.3s ease;
+}
+
+.blueprint-room-details {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* Light Theme Blueprint Overrides */
+.light-theme .blueprint-frame {
+    background-color: #ffffff;
+    border-color: var(--border-color);
+}
+
+.light-theme .grid-line {
+    stroke: rgba(0, 0, 0, 0.035);
+}
+
+.light-theme .blueprint-border {
+    stroke: rgba(0, 0, 0, 0.1);
+}
+
+.light-theme .wall-outline {
+    stroke: rgba(44, 62, 80, 0.75) !important;
+}
+
+.light-theme .furniture-line {
+    stroke: rgba(0, 0, 0, 0.08) !important;
+}
+
 .hero-content {
     max-width: 700px;
     position: relative;

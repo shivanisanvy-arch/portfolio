@@ -98,13 +98,80 @@
                         </div>
                     </div>
                 </div>
-                <!-- Premium Framed Architectural Showcase Card -->
+                <!-- Premium Interactive 2D Blueprint Floor Plan -->
                 <div class="hero-visual" id="hero-visual-card">
-                    <div class="hero-image-frame">
-                        <img src="images/page_13_img_2.jpg" alt="Featured Villa Design Project 3D Rendering" class="hero-render-img">
-                        <div class="hero-visual-badge">Featured Work &bull; Villa Design</div>
+                    <div class="blueprint-frame">
+                        <!-- Technical Grid Pattern Background -->
+                        <svg class="blueprint-svg" viewBox="0 0 500 375" id="interactive-blueprint">
+                            <defs>
+                                <pattern id="blueprint-grid" width="25" height="25" patternUnits="userSpaceOnUse">
+                                    <path d="M 25 0 L 0 0 0 25" fill="none" class="grid-line" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+                                </pattern>
+                            </defs>
+                            
+                            <!-- Background Grid -->
+                            <rect width="100%" height="100%" fill="url(#blueprint-grid)" class="blueprint-bg-rect" />
+                            
+                            <!-- Blueprint Outer border -->
+                            <rect x="5" y="5" width="490" height="365" fill="none" class="blueprint-border" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                            
+                            <!-- Interactive Room Zones (Semi-transparent fills on hover) -->
+                            <!-- Room 1: Living & Dining (Left side) -->
+                            <path d="M 25 25 L 260 25 L 260 350 L 25 350 Z" class="blueprint-room" data-room="living" fill="rgba(212,175,55,0)" stroke="none" />
+                            
+                            <!-- Room 2: Kitchen (Top Right) -->
+                            <path d="M 260 25 L 475 25 L 475 160 L 260 160 Z" class="blueprint-room" data-room="kitchen" fill="rgba(212,175,55,0)" stroke="none" />
+                            
+                            <!-- Room 3: Master Bed (Bottom Right) -->
+                            <path d="M 260 220 L 475 220 L 475 350 L 260 350 Z" class="blueprint-room" data-room="bedroom" fill="rgba(212,175,55,0)" stroke="none" />
+                            
+                            <!-- Room 4: Bathroom (Middle Right) -->
+                            <path d="M 260 160 L 475 160 L 475 220 L 260 220 Z" class="blueprint-room" data-room="bathroom" fill="rgba(212,175,55,0)" stroke="none" />
+
+                            <!-- Technical Drawings: Walls & Doors (Drawn in thin lines) -->
+                            <!-- Outer Walls -->
+                            <path d="M 25 25 L 475 25 L 475 350 L 25 350 Z" fill="none" class="wall-outline" stroke="var(--text-muted)" stroke-width="2" style="opacity: 0.6;"/>
+                            
+                            <!-- Internal Partition Walls -->
+                            <path d="M 260 25 L 260 350" fill="none" class="wall-outline" stroke="var(--text-muted)" stroke-width="2" style="opacity: 0.6;"/>
+                            <path d="M 260 160 L 475 160" fill="none" class="wall-outline" stroke="var(--text-muted)" stroke-width="2" style="opacity: 0.6;"/>
+                            <path d="M 260 220 L 475 220" fill="none" class="wall-outline" stroke="var(--text-muted)" stroke-width="2" style="opacity: 0.6;"/>
+                            
+                            <!-- Door Swings (Clean drafting style) -->
+                            <!-- Main Entry Door Swing (Bottom Left) -->
+                            <path d="M 50 350 A 40 40 0 0 1 90 310" fill="none" class="door-swing" stroke="rgba(212,175,55,0.4)" stroke-width="1" stroke-dasharray="2,2"/>
+                            <line x1="90" y1="350" x2="90" y2="310" class="door-leaf" stroke="var(--accent-color)" stroke-width="1.5"/>
+                            
+                            <!-- Bed Swing -->
+                            <path d="M 260 250 A 30 30 0 0 1 290 220" fill="none" class="door-swing" stroke="rgba(212,175,55,0.4)" stroke-width="1" stroke-dasharray="2,2"/>
+                            <line x1="260" y1="220" x2="290" y2="220" class="door-leaf" stroke="var(--accent-color)" stroke-width="1.5"/>
+
+                            <!-- Furniture outlines for scale -->
+                            <!-- Sofa in living -->
+                            <rect x="50" y="80" width="40" height="120" rx="3" fill="none" class="furniture-line" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                            <!-- Table in dining -->
+                            <circle cx="150" cy="220" r="25" fill="none" class="furniture-line" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                            <!-- Bed in bedroom -->
+                            <rect x="330" y="260" width="100" height="80" rx="2" fill="none" class="furniture-line" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                            
+                            <!-- Room Labels -->
+                            <text x="142" y="145" class="blueprint-label" text-anchor="middle">LIVING & DINING</text>
+                            <text x="367" y="95" class="blueprint-label" text-anchor="middle">KITCHEN</text>
+                            <text x="367" y="195" class="blueprint-label" text-anchor="middle">BATHROOM</text>
+                            <text x="367" y="295" class="blueprint-label" text-anchor="middle">MASTER SUITE</text>
+                            
+                            <!-- Dimension markings -->
+                            <line x1="25" y1="365" x2="475" y2="365" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+                            <text x="250" y="372" class="blueprint-dim" text-anchor="middle">45'-0"</text>
+                        </svg>
+                        
+                        <!-- Floating Glass Info Panel -->
+                        <div class="blueprint-info-overlay">
+                            <div class="blueprint-room-name" id="blueprint-room-name">Interactive CAD Plan</div>
+                            <div class="blueprint-room-details" id="blueprint-room-details">Hover over rooms to inspect spatial specifications.</div>
+                        </div>
                     </div>
-                    <div class="hero-visual-caption">3D Spatial Visualisation &bull; Living Area Concept</div>
+                    <div class="hero-visual-caption">CAD Space Planning &bull; Interactive 2D Blueprint</div>
                 </div>
             </div>
         </section>

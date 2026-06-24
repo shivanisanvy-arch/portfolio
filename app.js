@@ -291,4 +291,56 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // ==========================================
+    // 5. Interactive Blueprint Floor Plan
+    // ==========================================
+    const blueprintRooms = document.querySelectorAll('.blueprint-room');
+    const roomNameDisplay = document.getElementById('blueprint-room-name');
+    const roomDetailsDisplay = document.getElementById('blueprint-room-details');
+    
+    const roomSpecs = {
+        living: {
+            name: "Living & Dining Area",
+            details: "Dimensions: 22'-0\" x 13'-0\" | Area: 286 sq ft. Finishes: Italian marble flooring, custom mahogany wall claddings."
+        },
+        kitchen: {
+            name: "Modular Dry Kitchen",
+            details: "Dimensions: 17'-0\" x 11'-0\" | Area: 187 sq ft. Specs: Built-in kitchen island, matte-finished custom cabinetry."
+        },
+        bedroom: {
+            name: "Master Bedroom Suite",
+            details: "Dimensions: 17'-0\" x 10'-0\" | Area: 170 sq ft. Finishes: Hardwood oak floor, custom veneered headboard panels."
+        },
+        bathroom: {
+            name: "Boutique Bathroom",
+            details: "Dimensions: 17'-0\" x 5'-0\" | Area: 85 sq ft. Specs: Floating marble vanity, custom ceiling spotlights, glass shower partition."
+        }
+    };
+    
+    blueprintRooms.forEach(room => {
+        room.addEventListener('mouseenter', () => {
+            const roomKey = room.getAttribute('data-room');
+            const spec = roomSpecs[roomKey];
+            if (spec) {
+                roomNameDisplay.textContent = spec.name;
+                roomNameDisplay.style.color = "var(--accent-color)";
+                roomDetailsDisplay.textContent = spec.details;
+                
+                // Highlight corresponding SVG area
+                room.setAttribute('fill', 'rgba(212, 175, 55, 0.12)');
+                room.setAttribute('stroke', 'var(--accent-color)');
+                room.setAttribute('stroke-width', '1.5');
+            }
+        });
+        
+        room.addEventListener('mouseleave', () => {
+            roomNameDisplay.textContent = "Interactive CAD Plan";
+            roomNameDisplay.style.color = "var(--text-color)";
+            roomDetailsDisplay.textContent = "Hover over rooms to inspect spatial specifications.";
+            
+            room.setAttribute('fill', 'rgba(212, 175, 55, 0)');
+            room.setAttribute('stroke', 'none');
+        });
+    });
+
 });
